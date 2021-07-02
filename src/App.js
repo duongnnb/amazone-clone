@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Header from './components/header';
+import Home from './pages/home';
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route path="/">
-          <Header />
+          <Home />
         </Route>
       </Switch>
     </Router>
