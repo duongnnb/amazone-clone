@@ -2,10 +2,15 @@ import React from 'react';
 import './styles/header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
+
 function Header() {
   return (
     <div className="header">
-      <img className="header__logo" src="/images/amazon.png" alt="" />
+      <Link to={ROUTES.HOME}>
+        <img className="header__logo" src="/images/amazon.png" alt="" />
+      </Link>
       <div className="header__search">
         <input type="text" className="header__searchInput" />
         <SearchIcon className="header__searchIcon" />
@@ -23,10 +28,12 @@ function Header() {
           <span className="header__optionLineOne"> Your</span>
           <span className="header__optionLineTwo"> Prime</span>
         </div>
-        <div className="header__optionBasket">
-          <ShoppingBasketIcon />
-          <span className="header__optionLineTwo header__basketCount">0</span>
-        </div>
+        <Link to={ROUTES.CHECKOUT}>
+          <div className="header__optionBasket">
+            <ShoppingBasketIcon />
+            <span className="header__optionLineTwo header__basketCount">0</span>
+          </div>
+        </Link>
       </div>
     </div>
   );
