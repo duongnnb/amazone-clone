@@ -2,12 +2,22 @@ import React from 'react';
 import './styles/header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import { useStateValue } from '../../context/global';
+import { auth } from '../../lib/firebase';
 
 function Header() {
-  const [{ basket }, dispatch] = useStateValue();
+  const history = useHistory();
+  const [{ basket, user }] = useStateValue();
+
+  const handleAuthentication = () => {
+    if (user) {
+      auth.signOut();
+    } else {
+      history.push(ROUTES.SIGN_IN);
+    }
+  };
 
   return (
     <div className="header">
@@ -19,12 +29,10 @@ function Header() {
         <SearchIcon className="header__searchIcon" />
       </div>
       <div className="header__nav">
-        <Link to={ROUTES.SIGN_IN}>
-          <div className="header__option">
-            <span className="header__optionLineOne">Hello Guest</span>
-            <span className="header__optionLineTwo">Sign in</span>
-          </div>
-        </Link>
+        <div className="header__option" onClick={handleAuthentication}>
+          <span className="header__optionLineOne">Hello Guest</span>
+          <span className="header__optionLineTwo">{user ? 'Sign out' : 'Sign in'}</span>
+        </div>
         <div className="header__option">
           <span className="header__optionLineOne"> Returns</span>
           <span className="header__optionLineTwo"> & Orders</span>

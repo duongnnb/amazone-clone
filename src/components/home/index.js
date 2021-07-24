@@ -2,13 +2,13 @@ import React from 'react';
 import { Product } from '..';
 import './styles/main.css';
 
-function Main() {
+function Home() {
   return (
     <div className="home">
       <div className="home__container">
         <img className="home__image" src="/images/landing.jpg" alt="" />
         <div className="home__row">
-        <Product
+          <Product
             id="12321341"
             title="The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback"
             price={11.96}
@@ -61,4 +61,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Home;
