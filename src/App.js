@@ -7,9 +7,13 @@ import { auth } from './lib/firebase';
 import { useStateValue } from './context/global';
 
 function App() {
-  const [, dispatch] = useStateValue();
+  const [{ loading }, dispatch] = useStateValue();
 
   useEffect(() => {
+    dispatch({
+      type: 'SET_AUTH_LOADING',
+      loading: true,
+    });
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch({
@@ -21,6 +25,10 @@ function App() {
       }
     });
   }, [dispatch]);
+
+  if (loading) {
+    return <div className="App__loading">Loading App...</div>;
+  }
 
   return (
     <Router>

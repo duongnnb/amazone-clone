@@ -34,7 +34,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.user,
+        loading: false,
       };
+    case 'SET_AUTH_LOADING': {
+      return {
+        ...state,
+        loading: action.loading,
+      };
+    }
     default:
       return state;
   }
